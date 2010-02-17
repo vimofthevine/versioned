@@ -15,6 +15,8 @@ class Versioned_EntryTest extends PHPUnit_Framework_TestCase {
      * - Insert mock entry
      */
     protected function setUp() {
+        // Use unit test database
+        Kohana::config('database')->default['connection']['database'] = "unit_test";
         // import test schema file
         $entries_schema = Kohana::find_file('queries/schemas', 'entries', 'sql');
         $entries_sql = file_get_contents($entries_schema);

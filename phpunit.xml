@@ -1,11 +1,11 @@
 <phpunit
-    bootstrap="/home/shared/localhost/kyletreubig/index.php"
+    bootstrap="../../index.php"
     color="true"
     testSuiteLoaderClass="PHPUnit_Runner_StandardTestSuiteLoader">
 
     <testsuites>
         <testsuite name="Versioned Module Test Suite">
-            <directory>/home/shared/localhost/modules-3.0/versioned/tests/versioned</directory>
+            <directory>./tests/versioned</directory>
         </testsuite>
     </testsuites>
 
@@ -17,7 +17,7 @@
 
     <filter>
         <whitelist>
-            <directory suffix=".php">/home/shared/localhost/modules-3.0/versioned/classes</directory>
+            <directory suffix=".php">./classes</directory>
         </whitelist>
     </filter>
 
