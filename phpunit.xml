@@ -1,0 +1,28 @@
+<phpunit
+    bootstrap="/home/shared/localhost/kyletreubig/index.php"
+    color="true"
+    testSuiteLoaderClass="PHPUnit_Runner_StandardTestSuiteLoader">
+
+    <testsuites>
+        <testsuite name="Versioned Module Test Suite">
+            <directory>/home/shared/localhost/modules-3.0/versioned/tests/versioned</directory>
+        </testsuite>
+    </testsuites>
+
+    <groups>
+        <include>
+            <group>versioned</group>
+        </include>
+    </groups>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">/home/shared/localhost/modules-3.0/versioned/classes</directory>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-html" target="coverage" charset="UTF-8"
+            yui="true" highlight="true" lowUpperBound="35" highLowerBound="70" />
+    </logging>
+</phpunit>
