@@ -72,8 +72,8 @@ line 4";
         $text2 = "line 1\nline 2\nline 3\nline 4\nline 5\nline 6\nline 7\nline 8\nline 9\nline 10\nline 11\nline 12\nline 13\nline 14\nline 15\nline 16\nline 17\nline 18\nline 19\nline 20";
         $diff = Versioned::side_diff($text1, $text2);
 
-        $old = implode("\n", $diff[0]);
-        $new = implode("\n", $diff[1]);
+        $old = implode("\n", $diff['old']);
+        $new = implode("\n", $diff['new']);
 
         // deletions
         $this->assertEquals(9, preg_match_all('/deleted/', $old, $out));
@@ -115,8 +115,8 @@ line 4";
         $text2 = "line 1\nline 2\nline 3";
         $diff = Versioned::side_diff($text1, $text2);
 
-        $old = implode("\n", $diff[0]);
-        $new = implode("\n", $diff[1]);
+        $old = implode("\n", $diff['old']);
+        $new = implode("\n", $diff['new']);
 
         $this->assertRegExp('/<li class="deleted">line a<\/li><li> <\/li>/', $old);
         $this->assertRegExp('/<li class="added">line 1<\/li>/', $new);
@@ -131,8 +131,8 @@ line 4";
         $text2 = "line 1\nline 2\nline 3\nline 4";
         $diff = Versioned::side_diff($text1, $text2);
 
-        $old = implode("\n", $diff[0]);
-        $new = implode("\n", $diff[1]);
+        $old = implode("\n", $diff['old']);
+        $new = implode("\n", $diff['new']);
 
         $this->assertRegExp('/^<li> <\/li>/', $old);
         $this->assertRegExp('/<li class="added">line 1<\/li>/', $new);
@@ -146,8 +146,8 @@ line 4";
         $text2 = "line 2\nline 3";
         $diff = Versioned::side_diff($text1, $text2);
 
-        $old = implode("\n", $diff[0]);
-        $new = implode("\n", $diff[1]);
+        $old = implode("\n", $diff['old']);
+        $new = implode("\n", $diff['new']);
 
         $this->assertRegExp('/^<li> <\/li>/', $new);
         $this->assertRegExp('/<li class="deleted">line 1<\/li>/', $old);

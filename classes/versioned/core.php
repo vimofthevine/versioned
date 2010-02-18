@@ -168,7 +168,7 @@ class Versioned_Core {
             }
         }
 
-        return array($formatted_old,$formatted_new);
+        return array('old'=>$formatted_old, 'new'=>$formatted_new);
     }
 
     /**
