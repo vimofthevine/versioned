@@ -14,9 +14,9 @@ has-many field.  For example:
     class Model_Article extends Versioned_Sprig {
         public function _init() {
             parent::_init();
-            $this-»_fields += array(
-                'revisions' =» new Sprig_Field_HasMany(array(
-                    'model' =» 'Article_Revision',
+            $this->_fields += array(
+                'revisions' => new Sprig_Field_HasMany(array(
+                    'model' => 'Article_Revision',
                 )),
             );
         }
@@ -32,9 +32,9 @@ define the `entry` belongs-to field.  For example:
     class Model_Article_Revision extends Versioned_Revision {
         public function _init() {
             parent::_init();
-            $this-»_fields += array(
-                'entry' =» new Sprig_Field_BelongsTo(array(
-                    'model' =» 'Article',
+            $this->_fields += array(
+                'entry' => new Sprig_Field_BelongsTo(array(
+                    'model' => 'Article',
                 )),
             );
         }
@@ -53,12 +53,12 @@ The following fields are provided by `Versioned_Sprig`: `text`, `version`, `comm
 
 If the `title` field has been specified, `Versioned_Sprig` will track changes to the title, creating a revision comment indicating the change.  For example,
 
-    $entry = Sprig::factory('article', array('id'=»4))-»load();
-    $entry-»text = "Some modification to text.";
-    $entry-»title = "Versioned Entry #2";            // Previously "Versioned Entry #1"
-    $entry-»comment = "Fixed spelling error";
-    $entry-»editor = 3;
-    $entry-»update();
+    $entry = Sprig::factory('article', array('id'=>4))->load();
+    $entry->text = "Some modification to text.";
+    $entry->title = "Versioned Entry #2";            // Previously "Versioned Entry #1"
+    $entry->comment = "Fixed spelling error";
+    $entry->editor = 3;
+    $entry->update();
 
 Will result in the comments, "Fixed spelling error" and "Title changed from 'Versioned Entry #1' to 'Versioned Entry #2'", to be recorded along with the revision.
 
@@ -68,55 +68,55 @@ When a versioned entry is deleted, all of its revisions are deleted from the dat
 
 To retrieve a specific version of an entry, the `version()` method is provided by `Versioned_Sprig`.  The integer argument indicates which version to retrieve.  For example,
 
-    $entry = Sprig::factory('article', array('id'=»3))-»load();
-    echo $entry-»text;      // echoes "Article text for version 5"
-    echo $entry-»version;   // echoes "5"
-    $entry-»version(2);
-    echo $entry-»text;      // echoes "Article text for version 2"
-    echo $entry-»version;   // echoes "2"
+    $entry = Sprig::factory('article', array('id'=>3))->load();
+    echo $entry->text;      // echoes "Article text for version 5"
+    echo $entry->version;   // echoes "5"
+    $entry->version(2);
+    echo $entry->text;      // echoes "Article text for version 2"
+    echo $entry->version;   // echoes "2"
 
 Note: the `text` and `version` fields are the only fields modified by a `version()` call.
 
 The revisions of a versioned entry can be accessed by the `revisions` field of the entry.  This can be used for printing out a list of changes made to the entry.  For example,
 
-    $entry = Sprig::factory('article', array('id'=»6))-»load();
-    $revisions = $entry-»revisions;
+    $entry = Sprig::factory('article', array('id'=>6))->load();
+    $revisions = $entry->revisions;
     foreach($revisions as $revision) {
-        echo $revision-»version;
-        echo $revision-»date;
-        echo $revision-»editor-»name;
-        echo implode("\n", $revision-»comments);
+        echo $revision->version;
+        echo $revision->date;
+        echo $revision->editor->name;
+        echo implode("\n", $revision->comments);
     }
 
 ## Working with the Version Library
 
 The `Version` library included with the Versioned Module can assist with showing differences between versions of text.
 
-Inline difference (uses «ins» and «del» tags to mark up the text):
-    $entry = Sprig::factory('article', array('id'=»2))-»load();
-    $new_text = $entry-»text;
-    $entry-»version($entry-»version - 1);
-    $old_text = $entry-»text;
+Inline difference (uses <ins> and <del> tags to mark up the text):
+    $entry = Sprig::factory('article', array('id'=>2))->load();
+    $new_text = $entry->text;
+    $entry->version($entry->version - 1);
+    $old_text = $entry->text;
     echo Version::inline_diff($old_text, $new_text);
 
 Side-by-side difference (produces two arrays, showing added/deleted lines between two versions):
-    $entry = Sprig::factory('article', array('id'=»2))-»load();
-    $new_text = $entry-»text;
-    $entry-»version($entry-»version - 1);
-    $old_text = $entry-»text;
+    $entry = Sprig::factory('article', array('id'=>2))->load();
+    $new_text = $entry->text;
+    $entry->version($entry->version - 1);
+    $old_text = $entry->text;
     $diff = Version::side_diff($old_text, $new_text);
 
-    echo '«ul class="old_text"»';
+    echo '<ul class="old_text">';
     foreach($diff['old'] as $line) {
         echo $line;
     }
-    echo '«/ul»';
+    echo '</ul>';
 
-    echo '«ul class="new_text"»';
+    echo '<ul class="new_text">';
     foreach($diff['new'] as $line) {
         echo $line;
     }
-    echo '«/ul»';
+    echo '</ul>';
 
 ## Database Schemas
 
