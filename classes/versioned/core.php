@@ -19,7 +19,7 @@
  *
  * @brief   Version diff and patch algorithms
  */
-class Version {
+class Versioned_Core {
 
     /**
      * Find the difference between two strings

@@ -29,7 +29,7 @@ line 4";
      * Test diff by line
      */
     public function testDiffByLine() {
-        $diff = Version::diff(explode("\n", $this->line1), explode("\n", $this->line2));
+        $diff = Versioned::diff(explode("\n", $this->line1), explode("\n", $this->line2));
 
         $this->assertEquals('line 1', $diff[1]);
         $this->assertEquals('line 1.5', $diff[2]);
@@ -45,7 +45,7 @@ line 4";
      * Test diff by word
      */
     public function testDiffByWord() {
-        $diff = Version::diff($this->text1, $this->text2);
+        $diff = Versioned::diff($this->text1, $this->text2);
 
         $this->assertEquals('An', $diff[1]);
         $this->assertEquals('original', $diff[2]['d'][0]);
@@ -58,7 +58,7 @@ line 4";
      * Test inline comparison
      */
     public function testInlineComparison() {
-        $diff = Version::inline_diff($this->text1, $this->text2);
+        $diff = Versioned::inline_diff($this->text1, $this->text2);
 
         $this->assertRegExp('/<ins>unoriginal<\/ins>/', $diff);
         $this->assertRegExp('/<del>original<\/del>/', $diff);
@@ -70,7 +70,7 @@ line 4";
     public function testComplexSideComparison() {
         $text1 = "line 1\nline 4\nline a\nline 5\nline b\nline 7\nline c\nline d\nline 10\nline e\nline 13\nline 15\nline f\nline g\nline 16\nline h\nline i\nline 18\nline 19";
         $text2 = "line 1\nline 2\nline 3\nline 4\nline 5\nline 6\nline 7\nline 8\nline 9\nline 10\nline 11\nline 12\nline 13\nline 14\nline 15\nline 16\nline 17\nline 18\nline 19\nline 20";
-        $diff = Version::side_diff($text1, $text2);
+        $diff = Versioned::side_diff($text1, $text2);
 
         $old = implode("\n", $diff[0]);
         $new = implode("\n", $diff[1]);
@@ -113,7 +113,7 @@ line 4";
     public function testFirstLineChangeSideComparison() {
         $text1 = "line a\nline 2\nline 3";
         $text2 = "line 1\nline 2\nline 3";
-        $diff = Version::side_diff($text1, $text2);
+        $diff = Versioned::side_diff($text1, $text2);
 
         $old = implode("\n", $diff[0]);
         $new = implode("\n", $diff[1]);
@@ -129,7 +129,7 @@ line 4";
     public function testFirstLineInsertionSideComparison() {
         $text1 = "line 2\nline 3\nline 4";
         $text2 = "line 1\nline 2\nline 3\nline 4";
-        $diff = Version::side_diff($text1, $text2);
+        $diff = Versioned::side_diff($text1, $text2);
 
         $old = implode("\n", $diff[0]);
         $new = implode("\n", $diff[1]);
@@ -144,7 +144,7 @@ line 4";
     public function testFirstLineDeletionSideComparison() {
         $text1 = "line 1\nline 2\nline 3";
         $text2 = "line 2\nline 3";
-        $diff = Version::side_diff($text1, $text2);
+        $diff = Versioned::side_diff($text1, $text2);
 
         $old = implode("\n", $diff[0]);
         $new = implode("\n", $diff[1]);

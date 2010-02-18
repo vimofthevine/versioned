@@ -60,8 +60,8 @@ class Versioned_Sprig extends Sprig {
         if ($this->changed('text') AND $bump) {
             $diff = '';
             if ($this->version != 0) {
-                $diff = Version::diff($this->_original['text'], $this->_changed['text']);
-                $diff = Version::clean_array($diff);
+                $diff = Versioned::diff($this->_original['text'], $this->_changed['text']);
+                $diff = Versioned::clean_array($diff);
                 $diff = serialize($diff);
             }
             $this->version++;
@@ -106,7 +106,7 @@ class Versioned_Sprig extends Sprig {
 
         while ($revision->version > $version) {
             $diff = $revision->diff;
-            $text = Version::patch($text, $diff, TRUE);
+            $text = Versioned::patch($text, $diff, TRUE);
             $revision = $revisions->next()->current();
         }
 

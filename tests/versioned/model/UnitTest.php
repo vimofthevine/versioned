@@ -181,9 +181,9 @@ class Versioned_Model_UnitTest extends PHPUnit_Framework_TestCase {
         $text3 = "This is our first string";   // changed "my" to "our"
         $text4 = "This is our first";          // dropped "string"
 
-        $diff2 = serialize(Version::clean_array(Version::diff($text1, $text2)));
-        $diff3 = serialize(Version::clean_array(Version::diff($text2, $text3)));
-        $diff4 = serialize(Version::clean_array(Version::diff($text3, $text4)));
+        $diff2 = serialize(Versioned::clean_array(Versioned::diff($text1, $text2)));
+        $diff3 = serialize(Versioned::clean_array(Versioned::diff($text2, $text3)));
+        $diff4 = serialize(Versioned::clean_array(Versioned::diff($text3, $text4)));
 
         try {
             DB::insert('entry_revisions', array('entry_id','version','diff'))

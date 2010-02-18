@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
 
-class Model_Entry_Revision extends Model_Revision {
+class Model_Entry_Revision extends Versioned_Revision {
 
     public function _init() {
         parent::_init();

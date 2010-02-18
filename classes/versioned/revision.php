@@ -4,7 +4,7 @@
  * @author  Kyle Treubig
  * @brief   Versioned module revision model
  */
-class Model_Revision extends Sprig {
+class Versioned_Revision extends Sprig {
 
     protected $_sorting = array('version' => 'desc');
 
