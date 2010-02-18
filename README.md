@@ -92,7 +92,7 @@ The revisions of a versioned entry can be accessed by the `revisions` field of t
 
 The `Version` library included with the Versioned Module can assist with showing differences between versions of text.
 
-Inline difference (uses <ins> and <del> tags to mark up the text):
+Inline difference (uses &lt;ins&gt; and &lt;del&gt; tags to mark up the text):
     $entry = Sprig::factory('article', array('id'=>2))->load();
     $new_text = $entry->text;
     $entry->version($entry->version - 1);
