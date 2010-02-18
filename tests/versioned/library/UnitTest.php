@@ -7,7 +7,7 @@
  * @group   versioned
  * @group   versioned.library.version
  */
-class Versioned_VersionTest extends PHPUnit_Framework_TestCase {
+class Versioned_Library_UnitTest extends PHPUnit_Framework_TestCase {
 
     protected $line1 = "line 1
 line 1.5

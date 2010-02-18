@@ -7,7 +7,7 @@
  * @group   versioned
  * @group   versioned.model.entry
  */
-class Versioned_EntryTest extends PHPUnit_Framework_TestCase {
+class Versioned_Model_UnitTest extends PHPUnit_Framework_TestCase {
 
     /**
      * Setup the test case
