@@ -1,6 +1,8 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 
 /**
+ * Version diff and patch algorithms
+ *
  * Paul's Simple Diff Algorithm v 0.1
  * (C) Paul Butler 2007 <http://www.paulbutler.org/>
  * May be used and distributed under the zlib/libpng license.
@@ -17,7 +19,15 @@
  * returns the differences in HTML. The tags used are <ins> and <del>,
  * which can easily be styled with CSS.  
  *
- * @brief   Version diff and patch algorithms
+ * @package     Versioned
+ * @author      Paul Butler
+ * @copyright   (c) 2007 Paul Butler
+ * @license     zlib/libpng
+ * @see         http://www.paulbutler.org
+ *
+ * @author      Kyle Treubig
+ * @copyright   (c) 2010 Kyle Treubig
+ * @license     MIT
  */
 class Versioned_Core {
 
@@ -105,7 +115,7 @@ class Versioned_Core {
      * while lines added to the new string will be styled
      * with <li class="added">.
      *
-     * @author  Kyle Treubig
+     * @author      Kyle Treubig
      * @param old   The old string
      * @param new   The new string
      * @return      array of left and right arrays

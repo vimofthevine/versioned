@@ -1,8 +1,12 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
 
 /**
- * @author  Kyle Treubig
- * @brief   Versioned module revision model
+ * Versioned module revision model
+ *
+ * @package     Versioned
+ * @author      Kyle Treubig
+ * @copyright   (c) 2010 Kyle Treubig
+ * @license     MIT
  */
 class Versioned_Revision extends Sprig {
 
