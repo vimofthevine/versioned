@@ -9,20 +9,23 @@ In order to create a versioned model (such as a blog article model, or a page co
 ### The "entry" model
 
 The main entry model must extend `Versioned_Sprig` (or `Versioned_ORM` when it is implemented) and define the `revisions`
-has-many field.  For example:
+has-many field.  The field for which diffs are stored should be a `Sprig_Field_Versioned` field type and a field for which
+changes are tracked (and stored as revision comments) should be a `Sprig_Field_Tracked` field type.  For example:
 
     class Model_Article extends Versioned_Sprig {
         public function _init() {
             parent::_init();
             $this->_fields += array(
+                'title'     => new Sprig_Field_Tracked(array(
+                    'empty' => FALSE,
+                )),
+                'text'      => new Sprig_Field_Versioned,
                 'revisions' => new Sprig_Field_HasMany(array(
                     'model' => 'Article_Revision',
                 )),
             );
         }
     }
-
-Optionally, a `title` field (`Sprig_Field_Char`) can be specified and will be treated specially by `Versioned_Sprig` (see below).
 
 ### The "revision" model
 
@@ -49,9 +52,9 @@ field must reference the corresponding entry model.
 
 A versioned model is treated no differently than a normal Sprig (or ORM) model.  Values can be set and the model can be created or updated.
 
-The following fields are provided by `Versioned_Sprig`: `text`, `version`, `comment`, `editor`.  Obviously, `version` will contain the current version number.  `text` contains the main entry body, and is version controlled (ie, changes to the `text` field result in a new revision and version number increment).  The `comment` field can be set with a string to be recorded along with the new revision.  This can be useful for requiring users to record why they are changing a versioned entry.  The `editor` field can be set with the user ID of the current user making the modification (each revision has an editor).
+The following fields are provided by `Versioned_Sprig`: `version`, `comment`, `editor`.  Obviously, `version` will contain the current version number.  `text` contains the main entry body, and is version controlled (ie, changes to the `text` field result in a new revision and version number increment).  The `comment` field can be set with a string to be recorded along with the new revision.  This can be useful for requiring users to record why they are changing a versioned entry.  The `editor` field can be set with the user ID of the current user making the modification (each revision has an editor).
 
-If the `title` field has been specified, `Versioned_Sprig` will track changes to the title, creating a revision comment indicating the change.  For example,
+If a Sprig_Field_Tracked field has been specified, `Versioned_Sprig` will track changes to that field, creating a revision comment indicating the change.  For example,
 
     $entry = Sprig::factory('article', array('id'=>4))->load();
     $entry->text = "Some modification to text.";
